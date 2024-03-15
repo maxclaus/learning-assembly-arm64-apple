@@ -1,0 +1,17 @@
+# EditorConfig: https://editorconfig.org/
+
+# top-most EditorConfig file
+root = true
+
+# All (Defaults)
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+max_line_length = 100
+
+# Assembly
+[*.s]
+indent_style = tab
+indent_size = 8
