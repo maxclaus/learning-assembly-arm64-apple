@@ -17,14 +17,5 @@ hello_from_assembly:
 	ld hello.o -o hello -l System -syslibroot $(SYSLIBROOT) -e _main -arch arm64
 	./hello
 
-# true.o: true.s
-# 	as -o true.o true.s
-#
-# true: true.o
-# 	ld -o true true.o -lSystem -syslibroot $(SYSLIBROOT) -e _start
-#
-# false.o: false.s
-# 	as -o false.o false.s
-#
-# false: false.o
-# 	ld -o false false.o -lSystem -syslibroot $(SYSLIBROOT) -e _start
+disassembly:
+	objdump -d --macho hello.o
