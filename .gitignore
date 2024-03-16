@@ -1,6 +1,6 @@
 *.o
 
-arm64/playground/true_false/true
-arm64/playground/true_false/false
-arm64/playground/hello_world/hello
-arm64/playground/c_asm_integration/main
+playground/true_false/true
+playground/true_false/false
+playground/hello_world/hello
+playground/c_asm_integration/main
