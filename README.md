@@ -17,6 +17,11 @@ So far it is focused only on Apple Silicon arm64 chip with Mach-O object file pa
 - [Hello World in ARM64 Assembly](https://peterdn.com/post/2020/08/22/hello-world-in-arm64-assembly/)
 - [Apple M1 Assembly Language Hello World](https://smist08.wordpress.com/2021/01/08/apple-m1-assembly-language-hello-world/)
 - [HelloSilicon](https://github.com/below/HelloSilicon)
+- [Writing ARM Assembly Programs](https://www.linuxbnb.net/home/writing-arm-assembly-programs/)(read
+  this next)
+- [arm64 Syscall Examples](https://github.com/l0psec/arm64_macOS_Syscalls)
+- [ARMv8 AArch64/ARM64 Full Beginner's Assembly Tutorial](https://mariokartwii.com/armv8/)
+- [Exploring Mach-O](https://gpanders.com/blog/exploring-mach-o-part-1/)
 
 ### Docs
 
@@ -28,11 +33,34 @@ So far it is focused only on Apple Silicon arm64 chip with Mach-O object file pa
 - [Arm A-profile A64 Instruction Set Architecture](https://developer.arm.com/documentation/ddi0602/2022-09/Base-Instructions)
 - [Overview of ARM64 ABI conventions](https://learn.microsoft.com/en-us/cpp/build/arm64-windows-abi-conventions?view=msvc-170)
 - [Mac OS X ABI Mach-O File Format Reference](https://web.archive.org/web/20090901205800/http://developer.apple.com/mac/library/documentation/DeveloperTools/Conceptual/MachORuntime/Reference/reference.html), also available on [this Github repository](https://github.com/aidansteele/osx-abi-macho-file-format-referencea).
+- [How to Read ARM64 Assembly Language](https://wolchok.org/posts/how-to-read-arm64-assembly-language/) (TODO: read it)
+- [ARMv8-A A64 ISA Overview](https://armkeil.blob.core.windows.net/developer/Files/pdf/graphics-and-multimedia/ARMv8_InstructionSetOverview.pdf)
+- [Armv8-A Instruction Set Architecture](https://developer.arm.com/-/media/Arm%20Developer%20Community/PDF/Learn%20the%20Architecture/Armv8-A%20Instruction%20Set%20Architecture.pdf?revision=ebf53406-04fd-4c67-a485-1b329febfb3e)
+- [Fundamentals of ARMv8-A](http://classweb.ece.umd.edu/enee447.S2021/ARMv8-Documentation/fundamentals_of_armv8_a_100878_0100_en.pdf)
+- [ARM Directives](https://developer.arm.com/documentation/dui0802/b/Directives-Reference/Alphabetical-list-of-directives?lang=en)
+- [A64 general instructions in alphabetical order](https://developer.arm.com/documentation/dui0802/b/A64-General-Instructions/A64-general-instructions-in-alphabetical-order)
+- [A Guide to ARM64 / AArch64 Assembly on Linux with Shellcodes and Cryptography](https://modexp.wordpress.com/2018/10/30/arm64-assembly/)
+- [armclang Integrated Assembler](https://developer.arm.com/documentation/100067/0611/armclang-Integrated-Assembler?lang=en)
+- [Arm Compiler Migration and Compatibility Guide](https://developer.arm.com/documentation/100068/0612/)
+
+### ARM64 (AArch64) Reference Sheets
+
+- [ARM64 (AArch64) Reference Sheet](https://www.cs.swarthmore.edu/~kwebb/cs31/resources/ARM64_Cheat_Sheet.pdf)
+
+### Non-ARM Content, But still good Assembly References
+
+- [RISC-V Assembler Reference](https://michaeljclark.github.io/asm.html)
+- [Programming in assembly language tutorial](https://github.com/mschwartz/assembly-tutorial?tab=readme-ov-file#macos-version)
 
 ### Videos
 
 - [You can learn assembly FAST with this technique (arm64 breakdown)](https://www.youtube.com/watch?v=vhyettT7sdA)
 - [Overview of ARM64 Architecture and Instruction Sets](https://www.youtube.com/watch?v=95SceqrO_TU)
+- [ARM Assembly](https://www.youtube.com/playlist?list=PLn_It163He32Ujm-l_czgEBhbJjOUgFhg)
+
+### Books
+
+- [Programming with 64-Bit ARM Assembly Language]()
 
 ### Tools
 
@@ -108,3 +136,7 @@ used on writing my own summary later.
 - [`XNU`](https://github.com/apple-oss-distributions/xnu): short for X is not Unix. Is the kernel used by Darwin based on the Mach kernel.
 - `Mach-O`: short for Mach object file format. It determines the order which code and data in a binary
   file are read into memory. Programs compiled for Darwin will have this format.
+
+In the first slide it has good glossary about the different commands:
+https://www.cs.umb.edu/~bobw/CS341/i386_Assembly/Instructions.pdf
+TODO: Update any reference to use this naming convention.

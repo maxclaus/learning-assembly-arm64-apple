@@ -4,23 +4,23 @@
 
 .global _main
 .align  2     // Apple silicon boundary is 2
+; .arch armv8-a
 
+; This ".text" is the actual section that holds instructions of the program.
+; It is optional though.
+.text
 _main:
-	b _printf
+	b _print
 	b _terminate
 
-_printf:
-	// operations for
-	// 4	AUE_NULL	ALL	{ user_ssize_t write(int fd, user_addr_t cbuf, user_size_t nbyte); }
-	mov X0, #1          // pass 1 for the first argument, which 1 means stdout
-	adr X1, hellowworld // pass second argument, which is the pointer the hellow world string
-	mov X2, #12         // pass the third argument, which is the length of the hello world string
-	mov X16, #4         // menas it is about to call a write syscall operation (id=4).
-	svc 0
 
-_reboot:
-	mov X0, #1   // pass 1 for the first argument
-	mov X16, #55 // syscall id for the reboo operation
+// Use a the write syscall to write a text to the stdout.
+//https://github.com/opensource-apple/xnu/blob/0a798f6738bc1db01281fc08ae024145e84df927/bsd/kern/syscalls.master#L45C18-L45C30
+_print:
+	mov X0, #1          // pass 1 for the first argument, which 1 means stdout
+	adr X1, helloworld // pass second argument, which is the pointer the hellow world string
+	mov X2, #12         // pass the third argument, which is the length of the hello world string
+	mov X16, #4         // means it is about to call a write syscall operation (id=4).
 	svc 0
 
 _terminate:
@@ -43,7 +43,13 @@ _terminate:
 	// https://opensource.apple.com/source/xnu/xnu-1504.3.12/bsd/kern/syscalls.master
 	svc 0
 
-hellowworld:
+// Example of how to reboot the system using a syscall.
+_reboot:
+	mov X0, #1   // pass 1 for the first argument
+	mov X16, #55 // syscall id for the reboo operation
+	svc 0
+
+helloworld:
 	// hello world string
 	//  ascii operation assembles each string (with no automatic trailing zero byte)
 	// into consecutive addresses.
