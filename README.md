@@ -27,9 +27,12 @@ So far it is focused only on Apple Silicon arm64 chip with Mach-O object file pa
 
 - [Apple Syscall table](https://opensource.apple.com/source/xnu/xnu-1504.3.12/bsd/kern/syscalls.master)
 - [Linux Syscall table](https://blog.rchapman.org/posts/Linux_System_Call_Table_for_x86_64/)
+- [Data definition directives](https://developer.arm.com/documentation/101754/0622/armclang-Reference/armclang-Integrated-Assembler/Data-definition-directives?lang=en)
 - [Writing ARM64 code for Apple platforms](https://developer.apple.com/documentation/xcode/writing-arm64-code-for-apple-platforms)
 - [GNU Assembler](https://sourceware.org/binutils/docs/as/index.html)
+- [GNU Assembler Directives](https://web.mit.edu/gnu/doc/html/as_7.html)
 - [Getting Started with Arm Assembly Language](https://developer.arm.com/documentation/107829/0200/)
+- [A64 general instructions in alphabetical order](https://developer.arm.com/documentation/dui0802/b/A64-General-Instructions/A64-general-instructions-in-alphabetical-order?lang=en)
 - [Arm A-profile A64 Instruction Set Architecture](https://developer.arm.com/documentation/ddi0602/2022-09/Base-Instructions)
 - [Overview of ARM64 ABI conventions](https://learn.microsoft.com/en-us/cpp/build/arm64-windows-abi-conventions?view=msvc-170)
 - [Mac OS X ABI Mach-O File Format Reference](https://web.archive.org/web/20090901205800/http://developer.apple.com/mac/library/documentation/DeveloperTools/Conceptual/MachORuntime/Reference/reference.html), also available on [this Github repository](https://github.com/aidansteele/osx-abi-macho-file-format-referencea).
@@ -42,15 +45,19 @@ So far it is focused only on Apple Silicon arm64 chip with Mach-O object file pa
 - [A Guide to ARM64 / AArch64 Assembly on Linux with Shellcodes and Cryptography](https://modexp.wordpress.com/2018/10/30/arm64-assembly/)
 - [armclang Integrated Assembler](https://developer.arm.com/documentation/100067/0611/armclang-Integrated-Assembler?lang=en)
 - [Arm Compiler Migration and Compatibility Guide](https://developer.arm.com/documentation/100068/0612/)
+- [The basics of Arm64 Assembly](https://www.deusinmachina.net/p/the-basics-of-arm64-assembly/comment/13511472)
+- [Exploring AArch64 assembler](https://thinkingeek.com/categories/aarch64/)
+- [Introduction to ARM AArch64 Architecture and Low-level Programming](https://hrishim.github.io/llvl_prog1_book/chapter_1.html)
 
 ### ARM64 (AArch64) Reference Sheets
 
 - [ARM64 (AArch64) Reference Sheet](https://www.cs.swarthmore.edu/~kwebb/cs31/resources/ARM64_Cheat_Sheet.pdf)
 
-### Non-ARM Content, But still good Assembly References
+### Non-ARM-64 Content, But still good Assembly References
 
 - [RISC-V Assembler Reference](https://michaeljclark.github.io/asm.html)
 - [Programming in assembly language tutorial](https://github.com/mschwartz/assembly-tutorial?tab=readme-ov-file#macos-version)
+- [ARM-32 Assembly By Example](https://armasm.com/)
 
 ### Videos
 
@@ -90,7 +97,7 @@ They are used basically as parameter and result arguments.
 
 The `X18` register is reserved by Apple to its own use. We must not use it on our programs.
 
-#### instructions
+#### Instructions
 
 | Instruction | Description                                                 |
 | ----------- | ----------------------------------------------------------- |
@@ -105,6 +112,19 @@ The `X18` register is reserved by Apple to its own use. We must not use it on ou
 | `add`       | `add <destination>, <register1>, <register2>` | Add the value from 2 registers      |
 | `sub`       | `sub <destination>, <register1>, <register2>` | Subtract the value from 2 registers |
 | `mul`       | `mul <destination>, <register1>, <register2>` | Multiply the value from 2 registers |
+
+#### Directives
+
+| Instruction       | Description       | Absolute                               |
+| ----------------- | ----------------- | -------------------------------------- |
+| `.byte`           | 8-bits (1 byte)   | Within the range [-128,255] only       |
+| `.hword`          | 16-bits (2 bytes) | Within the range [-0x8000,0xffff] only |
+| `.word`           | 32-bits (4 bytes) | Within the range [-2^31,2^32-1] only   |
+| `.quad`, `.dowrd` | 64-bits (8 bytes) | Within the range [-2^63,2^64-1] only   |
+
+References:
+
+- [Data definition directives](https://developer.arm.com/documentation/101754/0622/armclang-Reference/armclang-Integrated-Assembler/Data-definition-directives?lang=en)
 
 ### Helpful commands
 

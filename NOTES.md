@@ -159,7 +159,7 @@ Fills `X0` with the value `0xFEDCBA9876543210`.
 
 ### ARMV7 Assembly Lessons by LaurieWired
 
-Notes taken from [ARM Assembly: Lesson 1 (MOV, Exit Syscall)](https://www.youtube.com/watch?v=kKtWsuuJEDs&t=304s).
+Notes taken from [ARM Assembly: Lesson 1 (MOV, Exit Syscall)](https://www.youtube.com/watch?v=kKtWsuuJEDs).
 
 On ARMv7 registers are hexadecimal values (8 values) with 4-bits each, which gives the total of
 32-bits per register.
@@ -177,3 +177,28 @@ First program
 - `.global`: Makes a label visible outside of the program for the linker.
 - `.section .text`: Section that holds the instructions of the program.
 - `.section .data`: Section that holds data such as strings and arrays used by the program.
+
+Notes taken from [ARM Assembly: Lesson 2 (ADD, SUB, MUL, set CPSR)](https://www.youtube.com/watch?v=xQ--xX9rHeE).
+
+- `add`, `sub`, `mul`: arithmetic instructions to sum, subtract, and multiply.
+- `cpsr`: Current Program Status Register. It holds the current state of the running program. The
+  bits in the CPSR register comprise different flags that are updated when certain conditions occur.
+  [Documentation](https://developer.arm.com/documentation/ddi0406/cb/System-Level-Architecture/The-System-Level-Programmers--Model/ARM-processor-modes-and-ARM-core-registers/Program-Status-Registers--PSRs-. For instance, if an arithmetic instruction executions results on a negative number or an overlfow, it will set a flag in CPSR describing that state. In order to that state to be saved on CPRS though, the instruction needs to have the `s` suffix, so instead of using `add` we would use `adds`.
+
+Notes taken from [ARM Assembly: Lesson 3 (LDR, STR)](https://www.youtube.com/watch?v=fJcdt7WMQCs).
+
+- ARM uses a load-store architecture. Only load and store instructions can access memory.
+- `.data` segment contains any complex data that won't be stored inside the register such as an array
+  or string. It contains the data that we need while executing the program.
+- `.word` data type is comprised of 2-bytes (16-bits)
+- `.text` segment contains the executed code.
+- `ldr`: Load Register, load data from an area/label on memory into a register.
+
+Notes taken from [ARM Assembly: Lesson 4 (Logical Operators)](https://www.youtube.com/watch?v=IJw1wm3Kb0Q).
+
+Logical operators manipulate the bits inside of the register.
+
+- `AND`: Copy value if both are true.
+- `ORR`: Copy value if any value is true.
+- `EOR`: (Exclusive OR) Copy value if any value is true.
+- `MVN`: Inverse value. Copy the inverse value.

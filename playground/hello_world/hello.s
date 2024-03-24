@@ -33,7 +33,7 @@ _terminate:
 	mov X0, #0
 
 	// Calling X16 means that it is about to call a surpervisor call.
-	// In the supervisor call termination command is represented by the   // number 1.
+	// In the supervisor call, the termination command is represented by the number 1.
 	mov X16, #1
 
 	// Call the supervisor call through "svc" command.
