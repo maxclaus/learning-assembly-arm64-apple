@@ -161,6 +161,8 @@ Fills `X0` with the value `0xFEDCBA9876543210`.
 
 ## ARMV7 Assembly Lessons by LaurieWired
 
+Code for these lessons and its conversion to arm64 are at [playground/arm_assembly_lessons](/playground/arm_assembly_lessons).
+
 Notes taken from [ARM Assembly: Lesson 1 (MOV, Exit Syscall)](https://www.youtube.com/watch?v=kKtWsuuJEDs).
 
 On ARMv7 registers are hexadecimal values (8 values) with 4-bits each, which gives the total of
@@ -293,3 +295,16 @@ format are repeating on the left with the negative sign bit which is `1`.
 | Binary   | `1111 1111 1111 1111 1111 1111 1_1_1_1 0000`        |
 | Positive | `0000 0000 0000 0000 0000 0000 0_0_0_1 0000`        |
 | Dec      | `   0    0    0         0           16    0  = -16` |
+
+Notes taken from [ARM Assembly: Lesson 6 (Shift and Rotate)](https://www.youtube.com/watch?v=aGJm3fuKLhA).
+
+- `lsl`: Shift left. Shifts all bits to left. Basically, shifting left by 1 is equivalent to
+  multiplying the number by 2.
+- `lsr`: Shift right. Shifts all bits to right. Basically, shifting right by 1 is equivalent to
+  dividing the number by 2. It does not recognize the sign bit though, so even if it a negative
+  number, it will get padded with 0, which would turn that number positive.
+- `asr`: Arithmetic shifts right pad to match the sign bit (it pads 0 for positive
+  number and 1 for negative numbers).
+- `ror`: Rotate right. Rotate bits around to right. The bit removed from the most right gets
+  inserted back to the most left.
+- `rrx`: Rotate right with Extended. THe same as `ror` but also uses the carry bit inside CPSR (Current Program Status Register).
