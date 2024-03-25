@@ -23,11 +23,13 @@ Notes taken from: [An Overview of the ARM Assembly Language Instruction Set](htt
 
 One option, painful but guaranteed way, is to use 4 instructions, each loads 16-bits (1/4 of the address):
 
-    // Load X2 with 0x1234FEDC4F5D (1311953613649440314 in decimal):
-    MOV     X2 #Ox6E3A
-    MOVK    X2 #Ox4F5D
-    MOVK    X2 #OxFEDC
-    MOVK    X2 #Ox1234
+```asm
+// Load X2 with 0x1234FEDC4F5D (1311953613649440314 in decimal):
+MOV     X2 #Ox6E3A
+MOVK    X2 #Ox4F5D
+MOVK    X2 #OxFEDC
+MOVK    X2 #Ox1234
+```
 
 `MOVK` it is an alias to another instruction, (which instruction though?)
 
@@ -113,26 +115,26 @@ Every ARM64 instruction is encoded by 32 bits.
 Recall that ARM processors cannot operate directly on data in memory.
 First, load data into a register:
 
-```
+```asm
 ldr X0, [X1]
 ```
 
 Where X1 contains the memory address of our data, and when done, store that data back in memory:
 
-```
+```asm
 str X0, [X1]
 ```
 
 We can access memory at an offset from X1, say 4 bytes:
 
-```
+```asm
 ldr X0, [X1, #4]
 str X0, [X1, #4]
 ```
 
 We can move data from other register or immediate values into a register
 
-```
+```asm
 mov X0, X1
 mov X0, #0x1234
 ```
@@ -141,14 +143,14 @@ Using `movn` instead of `mov` negates (bitwise) the argument before moving it.
 
 We can only move 16-bit values into a register. TO fill it with larger values, use:
 
-```
+```asm
 movk X0, #x5678, lsl #n
 ```
 
 Where `n` is 0, 16, 32, or 48. This shifts the second argument (here 0x5678) to the position indicated by the `lsl` argument,
 keeps all the over values in the register.
 
-```
+```asm
 mov X0, #0x3210
 mov X0, #0x7654, lsl #16
 mov X0, #0xBA98, lsl #32
@@ -157,7 +159,7 @@ mov X0, #0xFEDC, lsl #48
 
 Fills `X0` with the value `0xFEDCBA9876543210`.
 
-### ARMV7 Assembly Lessons by LaurieWired
+## ARMV7 Assembly Lessons by LaurieWired
 
 Notes taken from [ARM Assembly: Lesson 1 (MOV, Exit Syscall)](https://www.youtube.com/watch?v=kKtWsuuJEDs).
 
