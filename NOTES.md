@@ -202,3 +202,92 @@ Logical operators manipulate the bits inside of the register.
 - `ORR`: Copy value if any value is true.
 - `EOR`: (Exclusive OR) Copy value if any value is true.
 - `MVN`: Inverse value. Copy the inverse value.
+
+Notes taken from [ARM Assembly: Lesson 5 (Signed Number Conversions)](https://www.youtube.com/watch?v=9wvzEOq1imo).
+
+Data types:
+
+- Nibble: 4-bits (fun fact, in English nibble means small bytes, eat gently).
+- Byte: 8-bits
+- Halfword: 16-bits
+- Word: 32-bits
+
+Each processor register has 8 hexadecimal numbers. Each digit are represented by 4-bits. Which means
+each register holds 32-bits.
+
+Negative numbers:
+
+Computers use two's complement to represent signed numbers. 1 bit is suppose to represent the actual
+sign of number.
+
+- 1: means the number is negative
+- 0: means the number is positive
+
+And, all of the bits on the left hand side of the number are actually going to be padded the same
+value of that individual sign bit.
+
+| Hexadecimal | Decimal |
+| ----------- | ------- |
+| 0           | 0       |
+| 1           | 1       |
+| 2           | 2       |
+| 3           | 3       |
+| 4           | 4       |
+| 5           | 5       |
+| 6           | 6       |
+| 7           | 7       |
+| 8           | 8       |
+| 9           | 9       |
+| A           | 10      |
+| B           | 11      |
+| C           | 12      |
+| D           | 13      |
+| E           | 14      |
+| F           | 15      |
+
+Each bit on binary represents power of 2. Here is the table of values for power of 2
+from right-left direction so it is easier to compare with binary format.
+
+| 2⁵  | 2⁴  | 2³  | 2²  | 2¹  | 2⁰  |
+| --- | --- | --- | --- | --- | --- |
+| 32  | 16  | 8   | 4   | 2   | 1   |
+
+To convert Hex to Binary, we get the hex value and find how much of the power of 2 we need to get
+that value in hex, then we use the position for those values from the power of 2 table to build the
+binary value.
+
+Positive value examples:
+
+| Type   | Data                                                  |
+| ------ | ----------------------------------------------------- |
+| Hex    | `   0    0    0    0    0    0       1       9`       |
+| Binary | `0000 0000 0000 0000 0000 0000 0_0_0_1 1_0_0_1`       |
+| Dec    | `   0    0    0         0           16+8+0+0+1  = 25` |
+
+| Type   | Data                                                 |
+| ------ | ---------------------------------------------------- |
+| Hex    | `   0    0    0    0    0    0       1       0`      |
+| Binary | `0000 0000 0000 0000 0000 0000 0_0_0_1 0_0_0_0`      |
+| Dec    | `   0    0    0         0           16       0 = 16` |
+
+Negative value examples:
+
+Convert to positive by flipping all bits except the least significant bit (LSB) that is nonzero and
+all bits to its right.
+
+| Type     | Data                                                    |
+| -------- | ------------------------------------------------------- |
+| Hex      | `   f    f    f    f    f    f      e          7`       |
+| Binary   | `1111 1111 1111 1111 1111 1111 _1_1_1__0 0_1_1_1`       |
+| Positive | `0000 0000 0000 0000 0000 0000 _0_0_0__1 1_0_0_1`       |
+| Dec      | `   0    0    0         0             16+8+0+0+1 = -25` |
+
+Remembering, we know it is a negative number because all the numbers on binary
+format are repeating on the left with the negative sign bit which is `1`.
+
+| Type     | Data                                                |
+| -------- | --------------------------------------------------- |
+| Hex      | `   f    f    f    f    f    f    f       0`        |
+| Binary   | `1111 1111 1111 1111 1111 1111 1_1_1_1 0000`        |
+| Positive | `0000 0000 0000 0000 0000 0000 0_0_0_1 0000`        |
+| Dec      | `   0    0    0         0           16    0  = -16` |

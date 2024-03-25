@@ -71,7 +71,7 @@ So far it is focused only on Apple Silicon arm64 chip with Mach-O object file pa
 
 ### Tools
 
-- [Compiler Explorer](https://godbolt.org/) - To have a similar assembly output from the ones we get locally with `objdump`, use it with `armv8-a clang` compiler, [example](https://godbolt.org/z/9TTEY5hf7).
+- [Compiler Explorer](https://godbolt.org/) - To have a similar assembly output from the ones we get locally with `objdump`, use it with `armv8-a clang` compiler with options `-O2 -Wall`, [example](https://godbolt.org/z/bK4e1dcfa).
 
 ## Assembly ARM
 
@@ -97,6 +97,10 @@ They are used basically as parameter and result arguments.
 
 The `X18` register is reserved by Apple to its own use. We must not use it on our programs.
 
+#### Zero register
+
+`xzr`/`wzr` [zero register](https://stackoverflow.com/a/42794729/1050818).
+
 #### Instructions
 
 | Instruction | Description                                                 |
@@ -115,12 +119,12 @@ The `X18` register is reserved by Apple to its own use. We must not use it on ou
 
 #### Directives
 
-| Instruction       | Description       | Absolute                               |
-| ----------------- | ----------------- | -------------------------------------- |
-| `.byte`           | 8-bits (1 byte)   | Within the range [-128,255] only       |
-| `.hword`          | 16-bits (2 bytes) | Within the range [-0x8000,0xffff] only |
-| `.word`           | 32-bits (4 bytes) | Within the range [-2^31,2^32-1] only   |
-| `.quad`, `.dowrd` | 64-bits (8 bytes) | Within the range [-2^63,2^64-1] only   |
+| Instruction                     | Description       | Absolute                               |
+| ------------------------------- | ----------------- | -------------------------------------- |
+| `.byte`                         | 8-bits (1 byte)   | Within the range [-128,255] only       |
+| `.hword` (half word)            | 16-bits (2 bytes) | Within the range [-0x8000,0xffff] only |
+| `.word`                         | 32-bits (4 bytes) | Within the range [-2^31,2^32-1] only   |
+| `.quad`, `.dowrd` (double word) | 64-bits (8 bytes) | Within the range [-2^63,2^64-1] only   |
 
 References:
 
