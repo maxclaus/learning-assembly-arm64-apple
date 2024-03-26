@@ -308,3 +308,12 @@ Notes taken from [ARM Assembly: Lesson 6 (Shift and Rotate)](https://www.youtube
 - `ror`: Rotate right. Rotate bits around to right. The bit removed from the most right gets
   inserted back to the most left.
 - `rrx`: Rotate right with Extended. THe same as `ror` but also uses the carry bit inside CPSR (Current Program Status Register).
+
+Notes taken from [ARM Assembly: Lesson 7 (CMP)](https://www.youtube.com/watch?v=nDGy-PQ1gVs).
+
+- `cpm`: Compare register by subtracting the second argument from the first argument, and CPSR (Current Program Status Register) gets set based on the result.
+  - Negative bit is set when the result is negative (the first arg was smaller then the second arg)
+  - Carry bit is set when the result is positive (the first arg was bigger then the second arg)
+  - Zero and Carry bit is set when the result is zero (both args had the same value)
+
+The CPM instruction is generally used right before branch instructions.

@@ -101,6 +101,10 @@ The `X18` register is reserved by Apple to its own use. We must not use it on ou
 
 `xzr`/`wzr` [zero register](https://stackoverflow.com/a/42794729/1050818).
 
+#### Other registers
+
+- `cpsr`: Current Program Status Register - [doc](https://developer.arm.com/documentation/ddi0601/2023-12/AArch32-Registers/CPSR--Current-Program-Status-Register?lang=en).
+
 #### Instructions
 
 | Instruction | Description                                                 |
