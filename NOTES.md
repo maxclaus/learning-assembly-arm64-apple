@@ -317,3 +317,9 @@ Notes taken from [ARM Assembly: Lesson 7 (CMP)](https://www.youtube.com/watch?v=
   - Zero and Carry bit is set when the result is zero (both args had the same value)
 
 The CPM instruction is generally used right before branch instructions.
+
+Notes taken from [ARM Assembly: Lesson 8 (Branching)](https://www.youtube.com/watch?v=VeDPnWA_GVI).
+
+- `b`: unconditional branch,
+  [reference](https://developer.arm.com/documentation/ddi0403/d/Application-Level-Architecture/Instruction-Details/Alphabetical-list-of-ARMv7-M-Thumb-instructions/B?lang=en). For conditional branch check out [conditional
+  execution](https://developer.arm.com/documentation/ddi0406/c/Application-Level-Architecture/Instruction-Details/Conditional-execution) for extensions it support such as beq, bneq, and etc.

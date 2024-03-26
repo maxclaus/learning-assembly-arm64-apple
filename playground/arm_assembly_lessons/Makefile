@@ -50,3 +50,9 @@ lesson07: lesson07-arm64-apple.s
 	ld lesson07.o -o lesson07 -l System -syslibroot $(SYSLIBROOT) -e _start -arch arm64
 	./lesson07
 	echo $?
+
+lesson08: lesson08-arm64-apple.s
+	as lesson08-arm64-apple.s -g -o lesson08.o
+	ld lesson08.o -o lesson08 -l System -syslibroot $(SYSLIBROOT) -e _start -arch arm64
+	./lesson08
+	echo $?

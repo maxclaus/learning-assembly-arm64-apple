@@ -1,5 +1,5 @@
 // Program adapted from linux arm to apple arm64
-// based on "lesson06-arm-linux-example.s".
+// based on "lesson07-arm-linux-example.s".
 
 .global _start
 
