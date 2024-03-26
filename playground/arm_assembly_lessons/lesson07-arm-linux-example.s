@@ -1,5 +1,8 @@
 // Program based on this tutorial:
 // https://www.youtube.com/watch?v=aGJm3fuKLhA
+//
+// On the NOTES.md file at the root of this repository
+// there are more details about this lesson.
 
 .global _start
 

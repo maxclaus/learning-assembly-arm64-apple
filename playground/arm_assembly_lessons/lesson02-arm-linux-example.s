@@ -1,6 +1,9 @@
 // Program based on this tutorial:
 // https://www.youtube.com/watch?v=kKtWsuuJEDs
 //
+// On the NOTES.md file at the root of this repository
+// there are more details about this lesson.
+//
 // This program can be tested on https://cpulator.01xz.net/ with ARMV7
 //
 // References:
