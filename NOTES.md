@@ -323,3 +323,8 @@ Notes taken from [ARM Assembly: Lesson 8 (Branching)](https://www.youtube.com/wa
 - `b`: unconditional branch,
   [reference](https://developer.arm.com/documentation/ddi0403/d/Application-Level-Architecture/Instruction-Details/Alphabetical-list-of-ARMv7-M-Thumb-instructions/B?lang=en). For conditional branch check out [conditional
   execution](https://developer.arm.com/documentation/ddi0406/c/Application-Level-Architecture/Instruction-Details/Conditional-execution) for extensions it support such as beq, bneq, and etc.
+
+Notes taken from [ARM Assembly: Lesson 9 (While Loops)](https://www.youtube.com/watch?v=rg3aBTjsUms).
+
+- Labels name a certain location in memory.
+- Use `cmp` and `b` to implement a loop.
