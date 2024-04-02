@@ -161,6 +161,12 @@ Fills `X0` with the value `0xFEDCBA9876543210`.
 
 ## ARMV7 Assembly Lessons by LaurieWired
 
+These are lessons on ARMv7 32-bit for Linux and the assembly syntax is a bit
+different than the one used by ARMv8 64-bit for Apple. But they are similar enough
+for us to use it as resource to learn about assembly programming, specially because
+the lessons are very well explained by Laurie, going beyond just the syntax and covering
+as well other important topics such as conversion between data formats and so on.
+
 Code for these lessons and its conversion to arm64 are at [playground/arm_assembly_lessons](/playground/arm_assembly_lessons).
 
 Notes taken from [ARM Assembly: Lesson 1 (MOV, Exit Syscall)](https://www.youtube.com/watch?v=kKtWsuuJEDs).
@@ -328,3 +334,24 @@ Notes taken from [ARM Assembly: Lesson 9 (While Loops)](https://www.youtube.com/
 
 - Labels name a certain location in memory.
 - Use `cmp` and `b` to implement a loop.
+
+Notes taken from [ARM Assembly: Lesson 10 (Function Calls)](https://www.youtube.com/watch?v=pnnOL7kfkz0).
+
+- The first four arguments to a function are stored in registers r0-r3 and the remaining arguments
+  are pushed into the stack.
+- `lr` A link register is a register which holds the address to return to when a subroutine call completes. It actually stores the address of the instruction to execute after the function call has been completed.
+- `bl` Branch link, goes to a branch and sets the `lr`.
+- `bx` Branch and Exchange, causes a branch to an address and instruction set specified by a
+  register, for instance `bx lr`.
+- `push` Store registers on the stack to avoid losing their values during function calls.
+- `pop` Pop the value that we last pushed on the stack and stores to specified register.
+- `sp` Stack pointer. Holds the address of the stack memory.
+
+https://community.arm.com/arm-community-blogs/b/architectures-and-processors-blog/posts/armv8-1-m-pointer-authentication-and-branch-target-identification-extension
+
+Notes taken from [ARM Assembly: Lesson 11 (Stack Operations)](https://www.youtube.com/watch?v=56VrSY-F7_o).
+
+- `sub` The subtract command can be used to allocate space on the stack.
+  The stack grows downward in memory. Subtract from the stack pointer to allocate space
+  for new values.
+- `push` and `pop` commands update the stack pointer register automatically.

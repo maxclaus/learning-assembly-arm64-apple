@@ -10,13 +10,13 @@ clean:
 	@rm -f lesson3
 
 lesson01: lesson01-arm64-apple.s
-	as lesson01-arm64-apple.s -o lesson01.o
+	as lesson01-arm64-apple.s -g -o lesson01.o
 	ld lesson01.o -o lesson01 -l System -syslibroot $(SYSLIBROOT) -e _start -arch arm64
 	./lesson01
 	echo $?
 
 lesson02: lesson02-arm64-apple.s
-	as lesson02-arm64-apple.s -o lesson02.o
+	as lesson02-arm64-apple.s -g -o lesson02.o
 	ld lesson02.o -o lesson02 -l System -syslibroot $(SYSLIBROOT) -e _start -arch arm64
 	./lesson02
 	echo $?
@@ -62,3 +62,11 @@ lesson09: lesson09-arm64-apple.s
 	ld lesson09.o -o lesson09 -l System -syslibroot $(SYSLIBROOT) -e _start -arch arm64
 	./lesson09
 	echo $?
+
+lesson10: lesson10-arm64-apple.s
+	as lesson10-arm64-apple.s -g -o lesson10.o
+	ld lesson10.o -o lesson10 -l System -syslibroot $(SYSLIBROOT) -e _start -arch arm64
+
+lesson11: lesson11-arm64-apple.s
+	as lesson11-arm64-apple.s -g -o lesson11.o
+	ld lesson11.o -o lesson11 -l System -syslibroot $(SYSLIBROOT) -e _start -arch arm64

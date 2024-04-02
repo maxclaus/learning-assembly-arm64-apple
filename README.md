@@ -48,6 +48,7 @@ So far it is focused only on Apple Silicon arm64 chip with Mach-O object file pa
 - [The basics of Arm64 Assembly](https://www.deusinmachina.net/p/the-basics-of-arm64-assembly/comment/13511472)
 - [Exploring AArch64 assembler](https://thinkingeek.com/categories/aarch64/)
 - [Introduction to ARM AArch64 Architecture and Low-level Programming](https://hrishim.github.io/llvl_prog1_book/chapter_1.html)
+- [Migrating code from ARM to ARM64](https://blog.linuxplumbersconf.org/2014/ocw/system/presentations/2343/original/08%20-%20Migrating%20code%20from%20ARM%20to%20ARM64.pdf)
 
 ### ARM64 (AArch64) Reference Sheets
 
@@ -96,6 +97,20 @@ They are used basically as parameter and result arguments.
     Reference: https://developer.arm.com/documentation/107829/0200/Assembly-language-basics/Registers
 
 The `X18` register is reserved by Apple to its own use. We must not use it on our programs.
+
+NOTE: To be confirmed:
+
+```
+//------ AArch64 registers used:
+//
+// x0-x7        input/result
+// x18          platform        save
+// x19-x28      callee saved    save
+// x29(FP)      frame pointer   save
+// x30(LR)      link reg        save
+//
+// d8-d15       callee saved    save
+```
 
 #### Zero register
 
