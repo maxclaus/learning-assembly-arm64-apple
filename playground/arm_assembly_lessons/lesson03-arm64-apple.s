@@ -5,7 +5,7 @@
 // https://github.com/below/HelloSilicon?tab=readme-ov-file#chapter-4-controlling-program-flow
 //
 // How ADRP and ADD work using PAGE and PAGEOFF:
-// The ADRP instruction loads the address of the 4KB page anywhere
+// The ADRP instruction loads the address of the 4KB (4096 bytes) page anywhere
 // in the +/-4GB (33 bits) range of the current instruction
 // (which takes 21 high bits of the offset). This is denoted by the @PAGE operator.
 // Then, we can either use LDR or STR to read or write any address inside that page
@@ -23,7 +23,7 @@ _start:
 	// -------------
 
 	// Load var1 from the memory, and set its address to X0 register.
-	adrp X0, var1@PAGE
+	adrp X0, var1@PAGE			// loads the address of var1 "relative to a page (4096 bytes)"
 	add X0, X0, var1@PAGEOFF    // offset to var1 within the page
 
 	// Get the value from the address memory stored on X0 register.

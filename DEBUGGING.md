@@ -1,6 +1,7 @@
 - `lldb ./<program_executable>`: Start debugger for a program
 - `b <program_source_file>:<line_number>`: Add breakpoint to a specific line ([reason why we need to include the
   source code](https://stackoverflow.com/a/65767401/1050818)). Another more verbose option `breakpoint set --file <program_source_file>  --line <line_number>`
+- `b <label_name>`: Add a break point to label. If the label starts with `_` though, you need to omit the `_`.
 - `run`: Launch the program within the debugger
 - `c`: Continue execution.
 - `n, next`: Step over.
@@ -12,6 +13,8 @@
 - `register read`: Print general purpose registers
 - `register read --all`: Print all registers
 - `register read <register>`: Print the value for a register.
+- `p`: Print a variable or expression as decimal (`p $X0`).
+- `p/x`: Print a variable or expression as hexadecimal (`p/x $X0`).
 - `target create <program_executable>`: Relaunch program.
 - `gui`: Graphical user interface.
 - `help`

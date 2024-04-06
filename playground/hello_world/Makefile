@@ -20,5 +20,8 @@ hello_from_assembly: hello.s
 disassembly_objdump:
 	objdump -d --macho hello.o
 
+disassembly_llvm_objdump:
+	llvm-objdump -d --macho hello.o
+
 disassembly_otool:
 	otool -tvV hello.o
