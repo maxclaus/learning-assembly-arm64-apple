@@ -10,18 +10,20 @@
 ; It is optional though.
 .text
 _main:
-	b _print
+	bl _print
 	b _terminate
 
 
 // Use a the write syscall to write a text to the stdout.
-//https://github.com/opensource-apple/xnu/blob/0a798f6738bc1db01281fc08ae024145e84df927/bsd/kern/syscalls.master#L45C18-L45C30
+// https://github.com/opensource-apple/xnu/blob/0a798f6738bc1db01281fc08ae024145e84df927/bsd/kern/syscalls.master#L45C18-L45C30
 _print:
 	mov X0, #1          // pass 1 for the first argument, which 1 means stdout
 	adr X1, helloworld // pass second argument, which is the pointer the hellow world string
 	mov X2, #12         // pass the third argument, which is the length of the hello world string
 	mov X16, #4         // means it is about to call a write syscall operation (id=4).
 	svc 0
+
+	ret // return back to the next address before calling this function
 
 _terminate:
 	// Move the value 0 (represented as #0) to into the first parameter register (represent as X0).

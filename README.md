@@ -1,6 +1,6 @@
 # assembly-playground
 
-Nothing fancy, just a personal repository to keep track of some code
+Nothing fancy, just a personal repository to keep track of code
 I might write while learning Assembly and references I find helpful to Assembly resources.
 
 So far it is focused only on Apple Silicon arm64 chip with Mach-O object file parsing.
@@ -49,6 +49,10 @@ So far it is focused only on Apple Silicon arm64 chip with Mach-O object file pa
 - [Exploring AArch64 assembler](https://thinkingeek.com/categories/aarch64/)
 - [Introduction to ARM AArch64 Architecture and Low-level Programming](https://hrishim.github.io/llvl_prog1_book/chapter_1.html)
 - [Migrating code from ARM to ARM64](https://blog.linuxplumbersconf.org/2014/ocw/system/presentations/2343/original/08%20-%20Migrating%20code%20from%20ARM%20to%20ARM64.pdf)
+
+### Projects
+
+- https://github.com/sharifehsani/a64-assembly-language
 
 ### ARM64 (AArch64) Reference Sheets
 
