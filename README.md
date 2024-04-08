@@ -4,8 +4,6 @@ This is a personal repository to help me learning Assembly.
 
 This project contains notes and small program examples on Assembly programming for Apple ARM64.
 
-> **Disclaimer**: For anyone out there using this as a learning resource. These are notes from a beginner on Assembly world. If you notice any mistakes please let me know.
-
 ## Resources
 
 ### Learning
