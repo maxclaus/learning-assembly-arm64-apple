@@ -169,6 +169,8 @@ as well other important topics such as conversion between data formats and so on
 
 Code for these lessons and its conversion to arm64 are at [projects/arm_assembly_lessons](/projects/arm_assembly_lessons).
 
+### ARM Assembly: Lesson 1 (MOV, Exit Syscall)
+
 Notes taken from [ARM Assembly: Lesson 1 (MOV, Exit Syscall)](https://www.youtube.com/watch?v=kKtWsuuJEDs).
 
 On ARMv7 registers are hexadecimal values (8 values) with 4-bits each, which gives the total of
@@ -188,12 +190,16 @@ First program
 - `.section .text`: Section that holds the instructions of the program.
 - `.section .data`: Section that holds data such as strings and arrays used by the program.
 
+### ARM Assembly: Lesson 2 (ADD, SUB, MUL, set CPSR)
+
 Notes taken from [ARM Assembly: Lesson 2 (ADD, SUB, MUL, set CPSR)](https://www.youtube.com/watch?v=xQ--xX9rHeE).
 
 - `add`, `sub`, `mul`: arithmetic instructions to sum, subtract, and multiply.
 - `cpsr`: Current Program Status Register. It holds the current state of the running program. The
   bits in the CPSR register comprise different flags that are updated when certain conditions occur.
   [Documentation](https://developer.arm.com/documentation/ddi0406/cb/System-Level-Architecture/The-System-Level-Programmers--Model/ARM-processor-modes-and-ARM-core-registers/Program-Status-Registers--PSRs-. For instance, if an arithmetic instruction executions results on a negative number or an overlfow, it will set a flag in CPSR describing that state. In order to that state to be saved on CPRS though, the instruction needs to have the `s` suffix, so instead of using `add` we would use `adds`.
+
+### ARM Assembly: Lesson 3 (LDR, STR)
 
 Notes taken from [ARM Assembly: Lesson 3 (LDR, STR)](https://www.youtube.com/watch?v=fJcdt7WMQCs).
 
@@ -204,6 +210,8 @@ Notes taken from [ARM Assembly: Lesson 3 (LDR, STR)](https://www.youtube.com/wat
 - `.text` segment contains the executed code.
 - `ldr`: Load Register, load data from an area/label on memory into a register.
 
+### ARM Assembly: Lesson 4 (Logical Operators)
+
 Notes taken from [ARM Assembly: Lesson 4 (Logical Operators)](https://www.youtube.com/watch?v=IJw1wm3Kb0Q).
 
 Logical operators manipulate the bits inside of the register.
@@ -212,6 +220,8 @@ Logical operators manipulate the bits inside of the register.
 - `ORR`: Copy value if any value is true.
 - `EOR`: (Exclusive OR) Copy value if any value is true.
 - `MVN`: Inverse value. Copy the inverse value.
+
+### ARM Assembly: Lesson 5 (Signed Number Conversions)
 
 Notes taken from [ARM Assembly: Lesson 5 (Signed Number Conversions)](https://www.youtube.com/watch?v=9wvzEOq1imo).
 
@@ -302,6 +312,8 @@ format are repeating on the left with the negative sign bit which is `1`.
 | Positive | `0000 0000 0000 0000 0000 0000 0_0_0_1 0000`        |
 | Dec      | `   0    0    0         0           16    0  = -16` |
 
+### ARM Assembly: Lesson 6 (Shift and Rotate)
+
 Notes taken from [ARM Assembly: Lesson 6 (Shift and Rotate)](https://www.youtube.com/watch?v=aGJm3fuKLhA).
 
 - `lsl`: Shift left. Shifts all bits to left. Basically, shifting left by 1 is equivalent to
@@ -315,6 +327,8 @@ Notes taken from [ARM Assembly: Lesson 6 (Shift and Rotate)](https://www.youtube
   inserted back to the most left.
 - `rrx`: Rotate right with Extended. THe same as `ror` but also uses the carry bit inside CPSR (Current Program Status Register).
 
+### ARM Assembly: Lesson 7 (CMP)
+
 Notes taken from [ARM Assembly: Lesson 7 (CMP)](https://www.youtube.com/watch?v=nDGy-PQ1gVs).
 
 - `cpm`: Compare register by subtracting the second argument from the first argument, and CPSR (Current Program Status Register) gets set based on the result.
@@ -324,16 +338,22 @@ Notes taken from [ARM Assembly: Lesson 7 (CMP)](https://www.youtube.com/watch?v=
 
 The CPM instruction is generally used right before branch instructions.
 
+### ARM Assembly: Lesson 8 (Branching)
+
 Notes taken from [ARM Assembly: Lesson 8 (Branching)](https://www.youtube.com/watch?v=VeDPnWA_GVI).
 
 - `b`: unconditional branch,
   [reference](https://developer.arm.com/documentation/ddi0403/d/Application-Level-Architecture/Instruction-Details/Alphabetical-list-of-ARMv7-M-Thumb-instructions/B?lang=en). For conditional branch check out [conditional
   execution](https://developer.arm.com/documentation/ddi0406/c/Application-Level-Architecture/Instruction-Details/Conditional-execution) for extensions it support such as beq, bneq, and etc.
 
+### ARM Assembly: Lesson 9 (While Loops)
+
 Notes taken from [ARM Assembly: Lesson 9 (While Loops)](https://www.youtube.com/watch?v=rg3aBTjsUms).
 
 - Labels name a certain location in memory.
 - Use `cmp` and `b` to implement a loop.
+
+### ARM Assembly: Lesson 10 (Function Calls)
 
 Notes taken from [ARM Assembly: Lesson 10 (Function Calls)](https://www.youtube.com/watch?v=pnnOL7kfkz0).
 
@@ -347,7 +367,9 @@ Notes taken from [ARM Assembly: Lesson 10 (Function Calls)](https://www.youtube.
 - `pop` Pop the value that we last pushed on the stack and stores to specified register.
 - `sp` Stack pointer. Holds the address of the stack memory.
 
-https://community.arm.com/arm-community-blogs/b/architectures-and-processors-blog/posts/armv8-1-m-pointer-authentication-and-branch-target-identification-extension
+[Armv8.1-M Pointer Authentication and Branch Target Identification Extension](https://community.arm.com/arm-community-blogs/b/architectures-and-processors-blog/posts/armv8-1-m-pointer-authentication-and-branch-target-identification-extension).
+
+### ARM Assembly: Lesson 11 (Stack Operations)
 
 Notes taken from [ARM Assembly: Lesson 11 (Stack Operations)](https://www.youtube.com/watch?v=56VrSY-F7_o).
 
