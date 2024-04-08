@@ -27,7 +27,11 @@ This project contains notes and small program examples on Assembly programming f
 - [You can learn assembly FAST with this technique (arm64 breakdown)](https://www.youtube.com/watch?v=vhyettT7sdA)
 - [Overview of ARM64 Architecture and Instruction Sets](https://www.youtube.com/watch?v=95SceqrO_TU)
 - [ARM Assembly](https://www.youtube.com/playlist?list=PLn_It163He32Ujm-l_czgEBhbJjOUgFhg)
-- [Practical ARM Assembly Tutorial Series](https://www.youtube.com/playlist?list=PLn_It163He32Ujm-l_czgEBhbJjOUgFhg) (check out the notes section for notes on this series).
+- [Practical ARM Assembly Tutorial Series](https://www.youtube.com/playlist?list=PLn_It163He32Ujm-l_czgEBhbJjOUgFhg)
+  - [Notes about this series](/NOTES.md#armv7-assembly-lessons-by-lauriewired)
+  - [Source and converted code to arm64 for Apple](/projects/arm-assembly-lessons)
+- [ARM64 assembly](https://www.youtube.com/playlist?list=PLgVAKie80l4TIIAoIOmpHSccnY7TOhmNT).
+  - [Converted code to arm64 for Apple](/projects/arm64-assembly)
 
 ### Docs
 
