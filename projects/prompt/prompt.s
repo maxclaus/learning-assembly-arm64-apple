@@ -58,7 +58,7 @@ _print_number_msg:
 _print_number:
 	adrp X1, input@PAGE          // set X1 to address of the string
 	add X1, X1, input@PAGEOFF    // align to 64 bits
-	mov x2, #4
+	ldr X2, =input_len
 
 	mov X0, #1					// pass 1 for the first argument, which 1 means stdout
 	mov X16, #4					// means it is about to call a write syscall operation (id=4).
@@ -77,7 +77,7 @@ _print_number:
 _scan_number:
 	adrp X1, input@PAGE          //set X1 to address of the string
 	add X1, X1, input@PAGEOFF    //align to 64 bits
-	mov X2, #4
+	ldr X2, =input_len
 
 	mov X0, #0					// pass 1 for the first argument, which 0 means stdin
 	mov X16, #3					// means it is about to call a read syscall operation (id=3).
@@ -97,3 +97,4 @@ text_number_output: .ascii "Got: "
 
 .data
 input: .fill 4,1,0	// string with 4 bytes and fill it with zero
+input_len = . - input // length
