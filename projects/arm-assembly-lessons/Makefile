@@ -8,6 +8,14 @@ clean:
 	@rm -f lesson1
 	@rm -f lesson2
 	@rm -f lesson3
+	@rm -f lesson4
+	@rm -f lesson5
+	@rm -f lesson6
+	@rm -f lesson7
+	@rm -f lesson8
+	@rm -f lesson9
+	@rm -f lesson10
+	@rm -f lesson11
 
 lesson01: lesson01-arm64-apple.s
 	as lesson01-arm64-apple.s -g -o lesson01.o
