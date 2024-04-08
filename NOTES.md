@@ -167,7 +167,7 @@ for us to use it as resource to learn about assembly programming, specially beca
 the lessons are very well explained by Laurie, going beyond just the syntax and covering
 as well other important topics such as conversion between data formats and so on.
 
-Code for these lessons and its conversion to arm64 are at [playground/arm_assembly_lessons](/playground/arm_assembly_lessons).
+Code for these lessons and its conversion to arm64 are at [projects/arm_assembly_lessons](/projects/arm_assembly_lessons).
 
 Notes taken from [ARM Assembly: Lesson 1 (MOV, Exit Syscall)](https://www.youtube.com/watch?v=kKtWsuuJEDs).
 
