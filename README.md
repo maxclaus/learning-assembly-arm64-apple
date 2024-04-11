@@ -17,13 +17,14 @@ This project contains notes and small program examples on Assembly programming f
 - [arm64 Syscall Examples](https://github.com/l0psec/arm64_macOS_Syscalls)
 - [ARMv8 AArch64/ARM64 Full Beginner's Assembly Tutorial](https://mariokartwii.com/armv8/)
 - [Exploring Mach-O](https://gpanders.com/blog/exploring-mach-o-part-1/)
-- [How to Read ARM64 Assembly Language](https://wolchok.org/posts/how-to-read-arm64-assembly-language/) (TODO: read it)
+- [How to Read ARM64 Assembly Language](https://wolchok.org/posts/how-to-read-arm64-assembly-language/)
 - [Fundamentals of ARMv8-A](http://classweb.ece.umd.edu/enee447.S2021/ARMv8-Documentation/fundamentals_of_armv8_a_100878_0100_en.pdf)
+- [arm64 notes](https://johannst.github.io/notes/arch/arm64.html)
 
 ### Videos
 
 - [How hello world for arm64 assembly really works (apple silicon)](https://www.youtube.com/watch?v=d0OXp0zqIo0)
-- [Assembly no macOS M1/ARM64](https://www.youtube.com/watch?v=clyO5z_klrk)
+- [Assembly no macOS M1/ARM64](https://www.youtube.com/watch?v=clyO5z_klrk) (BR Portuguese)
 - [You can learn assembly FAST with this technique (arm64 breakdown)](https://www.youtube.com/watch?v=vhyettT7sdA)
 - [Overview of ARM64 Architecture and Instruction Sets](https://www.youtube.com/watch?v=95SceqrO_TU)
 - [ARM Assembly](https://www.youtube.com/playlist?list=PLn_It163He32Ujm-l_czgEBhbJjOUgFhg)
@@ -39,6 +40,7 @@ This project contains notes and small program examples on Assembly programming f
 - [Data definition directives](https://developer.arm.com/documentation/101754/0622/armclang-Reference/armclang-Integrated-Assembler/Data-definition-directives?lang=en)
 - [Writing ARM64 code for Apple platforms](https://developer.apple.com/documentation/xcode/writing-arm64-code-for-apple-platforms)
 - [Getting Started with Arm Assembly Language](https://developer.arm.com/documentation/107829/0200/)
+- [A64 -- Base Instructions (alphabetic order)](https://www.scs.stanford.edu/~zyedidia/arm64/index.html)
 - [A64 general instructions in alphabetical order](https://developer.arm.com/documentation/dui0802/b/A64-General-Instructions/A64-general-instructions-in-alphabetical-order)
 - [Arm A-profile A64 Instruction Set Architecture](https://developer.arm.com/documentation/ddi0602/2022-09/Base-Instructions)
 - [Mac OS X ABI Mach-O File Format Reference](https://web.archive.org/web/20090901205800/http://developer.apple.com/mac/library/documentation/DeveloperTools/Conceptual/MachORuntime/Reference/reference.html), also available on [this Github repository](https://github.com/aidansteele/osx-abi-macho-file-format-referencea).
@@ -59,6 +61,7 @@ This project contains notes and small program examples on Assembly programming f
 ### ARM64 (AArch64) Reference Sheets
 
 - [ARM64 (AArch64) Reference Sheet](https://www.cs.swarthmore.edu/~kwebb/cs31/resources/ARM64_Cheat_Sheet.pdf)
+- [ARM64 Calling Convention Cheat Sheet](https://dede.dev/posts/ARM64-Calling-Convention-Cheat-Sheet/)
 
 ### Not specific to ARM64 and Apple development, But still good Assembly References
 
@@ -88,9 +91,7 @@ Since those options don't work for Apple development. We must use the Clang asse
 
 ### Registers
 
-#### x0-x30 / w0-w30
-
-Those are the general-purpose registers used by ARM for fast access most close to the CPU. The `w` prefix is used for 32 bit and `x` prefix for 64 bit.
+`x0-x30` / `w0-w30` are the general-purpose registers used by ARM for fast access most close to the CPU. The `w` prefix is used for 32 bit and `x` prefix for 64 bit.
 They are used basically as parameter and result arguments.
 
     The A64 ISA provides 31 general-purpose registers. For this guide, we will say that these registers are called x0 to x30, and they each contain 64 bits of data.
@@ -99,27 +100,37 @@ They are used basically as parameter and result arguments.
 
     Reference: https://developer.arm.com/documentation/107829/0200/Assembly-language-basics/Registers
 
-The `X18` register is reserved by Apple to its own use. We must not use it on our programs.
+Most common registers:
 
-NOTE: To be confirmed:
+- `x0-x7`: These are general purpose registers used as input/output parameters for functions calls.
+  If a function has more than 8 arguments, the rest of the arguments are passed through the stack.
+- `x8`: Used as an indirect result location register.
+- `x9-x15`: Temporary registers. Can be used freely within a function.
+- `x16-x17`: Used as intra-procedure-call scratch registers (temporary).
+- `x18`: Reserved by Apple to its own use. We must not use it on our programs.
+- `x19-x28`: Callee-saved registers. Functions must save and restore these registers if used.
+- `fp` (`x29`): Frame pointer, points to the stack base during a function call, to recover stack from calling function.
+- `lr` (`x30`): Link register, saves the return address at a function call.
+- `pc`: Program counter, contains address of the next instruction to be executed.
+- `sp`: Stack pointer, points to dynamic memory available during program execution.
+- `xzr`: Zero register, always contains the value zero. [More details](https://stackoverflow.com/a/42794729/1050818).
 
-```
-//------ AArch64 registers used:
-//
-// x0-x7        input/result
-// x18          platform        save
-// x19-x28      callee saved    save
-// x29(FP)      frame pointer   save
-// x30(LR)      link reg        save
-//
-// d8-d15       callee saved    save
-```
+#### Registers cheat sheet
 
-#### Zero register
+Just a summary of the available registers for quick reference.
 
-`xzr`/`wzr` [zero register](https://stackoverflow.com/a/42794729/1050818).
+| Register 8 bytes   | Register 4 bytes | Short Description                          |
+| ------------------ | ---------------- | ------------------------------------------ |
+| `x0-x7`            | `w0-w7`          | input/output parameters for function calls |
+| `x29` (alias `fp`) | `w29`            | frame pointer (FP)                         |
+| `x30` (alias `lr`) | `w30`            | link register (LR)                         |
+| `sp`               | `wsp`            | stack pointer (SP)                         |
+| `pc`               |                  | program counter (PC)                       |
+| `xzr`              | `wzr`            | zero register                              |
 
 #### Other registers
+
+Less used registers, but still important to mention:
 
 - `cpsr`: Current Program Status Register - [doc](https://developer.arm.com/documentation/ddi0601/2023-12/AArch32-Registers/CPSR--Current-Program-Status-Register?lang=en).
 
@@ -185,7 +196,3 @@ used on writing my own summary later.
 - [`XNU`](https://github.com/apple-oss-distributions/xnu): short for X is not Unix. Is the kernel used by Darwin based on the Mach kernel.
 - `Mach-O`: short for Mach object file format. It determines the order which code and data in a binary
   file are read into memory. Programs compiled for Darwin will have this format.
-
-In the first slide it has good glossary about the different commands:
-https://www.cs.umb.edu/~bobw/CS341/i386_Assembly/Instructions.pdf
-TODO: Update any reference to use this naming convention.
