@@ -1,7 +1,7 @@
 // This program is based on this tutorial ARM64 for Linux:
-// https://www.youtube.com/watch?v=eq60hjbHsmk
+// https://www.youtube.com/watch?v=qHDGg0i-j7k
 // The source code can be found at:
-// https://github.com/rdoetjes/tuts/blob/main/asm/arm64_linux/toupper/hello64.s
+// https://github.com/rdoetjes/tuts/blob/main/asm/arm64_linux/bitcount/bitcount.s
 
 .text
 .align 4

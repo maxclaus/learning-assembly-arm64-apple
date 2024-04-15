@@ -109,10 +109,13 @@ Most common registers:
 - `x16-x17`: Used as intra-procedure-call scratch registers (temporary).
 - `x18`: Reserved by Apple to its own use. We must not use it on our programs.
 - `x19-x28`: Callee-saved registers. Functions must save and restore these registers if used.
-- `fp` (`x29`): Frame pointer, points to the stack base during a function call, to recover stack from calling function.
-- `lr` (`x30`): Link register, saves the return address at a function call.
-- `pc`: Program counter, contains address of the next instruction to be executed.
-- `sp`: Stack pointer, points to dynamic memory available during program execution.
+- `fp` (`x29`): Frame pointer, points to the stack base during a function call, to recover stack from calling function. It is used as base pointer to local variables on the stack per function. It won't change in a function scope and it will always hold the frame base pointer.
+- `lr` (`x30`): Link register, saves the return address at a function call. It holds the address to return to when a subroutine call completes. It actually stores the address of the instruction to execute after the function call has been completed.
+- `pc`: Program counter, contains address of the next instruction to be executed. It is incremented
+  for every single instruction it runs.
+- `sp`: Stack Pointer, used for dynamic memory allocation, points to the next available location on the stack.
+  When the general purpose registers are not enough, we can use this to store data in the stack. It
+  will be updated as the data is pushed and popped out of the stack.
 - `xzr`: Zero register, always contains the value zero. [More details](https://stackoverflow.com/a/42794729/1050818).
 
 #### Registers cheat sheet
@@ -144,11 +147,12 @@ Less used registers, but still important to mention:
 
 ##### Arithmetic operations
 
-| Instruction | Signature                                     | Description                         |
-| ----------- | --------------------------------------------- | ----------------------------------- |
-| `add`       | `add <destination>, <register1>, <register2>` | Add the value from 2 registers      |
-| `sub`       | `sub <destination>, <register1>, <register2>` | Subtract the value from 2 registers |
-| `mul`       | `mul <destination>, <register1>, <register2>` | Multiply the value from 2 registers |
+| Instruction | Signature                                      | Description                         |
+| ----------- | ---------------------------------------------- | ----------------------------------- |
+| `add`       | `add <destination>, <register1>, <register2>`  | Add the value from 2 registers      |
+| `sub`       | `sub <destination>, <register1>, <register2>`  | Subtract the value from 2 registers |
+| `mul`       | `mul <destination>, <register1>, <register2>`  | Multiply the value from 2 registers |
+| `udiv`      | `udiv <destination>, <register1>, <register2>` | Divides two unsigned values         |
 
 #### Directives
 

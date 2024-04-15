@@ -19,3 +19,4 @@ projects/arm-assembly-lessons/lesson11
 projects/prompt/prompt
 projects/temperature-converter/temperature-converter
 projects/arm64-assembly/part1-toupper/hello64
+projects/arm64-assembly/part2-bitcount/bitcount
