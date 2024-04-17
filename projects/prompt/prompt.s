@@ -16,52 +16,61 @@
 // - 0 = standard input file descriptor (stdin)
 // - 1 = standard output file descriptor (stdout)
 // - 2 = standard error file descriptor (stderr)
+.set STDIN, 0
+.set STDOUT, 1
+
+.set SYSCALL_EXIT, 1
+.set SYSCALL_READ, 3
+.set SYSCALL_WRITE, 4
 
 _main:
-	bl _print_prompt	// Use bl (branch link) so link register (x30) is
-						// registered with this address, so we can use "ret"
-						// later inside _print function to get back to this address.
+	// Part 1: Print prompt message
+	// ------------------------------
+	adrp x1, output_prompt@PAGE			// pointer to the prompt string
+	add x1, x1, output_prompt@PAGEOFF
+	ldr x2, =output_prompt_len			// length of the string
+	bl _print							// Use bl (branch link) so link register (x30) is
+										// registered with this address, so we can use "ret"
+										// later inside _print function to get back to this address.
 
-	bl _scan_number
+	// Part 2: Scan input
+	// ------------------------------
+	adrp X1, input@PAGE          //set X1 to address of the string
+	add X1, X1, input@PAGEOFF    //align to 64 bits
+	ldr X2, =input_len
 
-	bl _print_number_msg
+	// The syscalls override x1 and x2 and we need
+	// these registers content later again in order to print
+	// what the user typed into our program.
+	stp x1, x2, [sp, #-16]!
 
+	bl _scan
 	// When running lldb debugger, use "x -s 4 -f c &input" to print string.
-	bl _print_number
 
+	// Part 3: Print got message
+	// ------------------------------
+	adrp x1, output_got@PAGE			// pointer to the got string
+	add x1, x1, output_got@PAGEOFF
+	ldr x2, =output_got_len				// length of the string
+	bl _print
+
+	// Part 4: Print input data
+	// ------------------------------
+	ldp x1, x2, [sp], #16
+	bl _print
+
+	// Part 5: Exit program
+	// ------------------------------
 	b _exit
 
 // Use a the write syscall to write a text to the stdout.
 // https://github.com/opensource-apple/xnu/blob/0a798f6738bc1db01281fc08ae024145e84df927/bsd/kern/syscalls.master#L45C18-L45C30
-_print_prompt:
-	mov X0, #1					// pass 1 for the first argument, which 1 means stdout
-	adr X1, text_number_input	// pass second argument, which is the pointer the string
-	mov X2, #8					// pass the third argument, which is the length of the string
-	mov X16, #4					// means it is about to call a write syscall operation (id=4).
-	svc 0
-
-	ret // ret is the same as "mov pc, x30", which means,
-		// move back the next address before the call to this function.
-
-// Print output message without the number part
-_print_number_msg:
-	mov X0, #1					// pass 1 for the first argument, which 1 means stdout
-	adr X1, text_number_output	// pass second argument, which is the pointer the string
-	mov X2, #5					// pass the third argument, which is the length of the string
-	mov X16, #4					// means it is about to call a write syscall operation (id=4).
-	svc 0
-
-	ret // ret is the same as "mov pc, x30", which means,
-		// move back the next address before the call to this function.
-
-// Print the number from user input
-_print_number:
-	adrp X1, input@PAGE          // set X1 to address of the string
-	add X1, X1, input@PAGEOFF    // align to 64 bits
-	ldr X2, =input_len
-
-	mov X0, #1					// pass 1 for the first argument, which 1 means stdout
-	mov X16, #4					// means it is about to call a write syscall operation (id=4).
+// Arguments:
+// - x1 = memory address, with the content which should be printed to the stdout
+// - x2 = string length
+_print:
+	mov x0, #STDOUT				// stream type (stdout=1)
+	mov x16, #SYSCALL_WRITE		// means it is about to call a write syscall operation (id=4).
 	svc 0
 
 	ret // ret is the same as "mov pc, x30", which means,
@@ -70,31 +79,29 @@ _print_number:
 // Use a the read syscall to write a text to the stdout.
 // https://github.com/opensource-apple/xnu/blob/0a798f6738bc1db01281fc08ae024145e84df927/bsd/kern/syscalls.master#L44C31-L44C35
 //
-// Output registers:
-// X0 contains the number of bytes read
-// X1 contains pointer to string
-// X2 is the length of the target string
-_scan_number:
-	adrp X1, input@PAGE          //set X1 to address of the string
-	add X1, X1, input@PAGEOFF    //align to 64 bits
-	ldr X2, =input_len
-
-	mov X0, #0					// pass 1 for the first argument, which 0 means stdin
-	mov X16, #3					// means it is about to call a read syscall operation (id=3).
+// Arguments:
+// - x1 = memory address, where the input data should be stored
+// - x2 = lenght of that memory content
+_scan:
+	mov X0, #STDIN				 // stream type (stdin=0)
+	mov X16, #SYSCALL_READ		 // means it is about to call a read syscall operation (id=3).
 	svc 0
 
-	ret // ret is the same as "mov pc, x30", which means,
-		// move back the next address before the call to this function.
-
+	ret                          // ret is the same as "mov pc, x30", which means,
+		                         // move back the next address before the call to this function.
 
 _exit:
-	mov X0, #0   // 0 = success exit status code
-	mov X16, #1  // 1 = supervisor exit command
-	svc 0        // call supervisor with the previous parameters
+	mov X0, #0              // 0 = success exit status code
+	mov X16, #SYSCALL_EXIT  // 1 = supervisor exit command
+	svc 0                   // call supervisor with the previous parameters
 
-text_number_input: .ascii "Number: "
-text_number_output: .ascii "Got: "
 
 .data
-input: .fill 4,1,0	// string with 4 bytes and fill it with zero
+output_prompt: .ascii "Number: "
+output_prompt_len = . - output_prompt
+
+output_got: .ascii "Got: "
+output_got_len = . - output_got
+
+input: .fill 4,1,0	// 4 bytes and fill it with zero
 input_len = . - input // length
