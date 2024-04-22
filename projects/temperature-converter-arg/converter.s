@@ -3,34 +3,29 @@
 .global _start
 
 _start:
-	bl _print_prompt
-	bl _scan_input
+	bl _parse_argv
 	b _convert_temperature
 
-_print_prompt:
-	stp x29, x30, [sp, #-16]!			// store fp and sp on the stack
+_parse_argv:
+	stp x29, x30, [sp, #-16]!	// store fp and sp on the stack
 
-	adrp x1, output_prompt@PAGE			// pointer to the prompt string
-	add x1, x1, output_prompt@PAGEOFF
-	ldr x2, =output_prompt_len			// length of the string
-	bl print
+	// x0 = argc (argument count)
+	// x1 = argv (argument variables)
+	//      argv[0] = program path
+	//      arvg[1] = first argument
+	ldr x1, [x1, #8]			// load the arg from argv[1]
+	mov x2, #0					// argv[1] length
 
-	ldp x29, x30, [sp], #16				// pop fp and sp from stack
+_parse_argv_readchar:
+	ldrb w4, [x1, x2]
+	cmp w4, #0					// check if byte is \0 null string, which means it is the end of the string
+	beq _parse_argv_end
 
-	ret
+	add x2, x2, #1
+	b _parse_argv_readchar
 
-_scan_input:
-	stp x29, x30, [sp, #-16]!			// store fp and sp on the stack
-
-	adrp x1, input@PAGE
-	add x1, x1, input@PAGEOFF
-	ldr x2, =input_len
-	bl input_stdin
-
-	mov x2, x0							// updates x2 (input length) with x0 (number of bytes read)
-
-	ldp x29, x30, [sp], #16				// pop fp and sp from stack
-
+_parse_argv_end:
+	ldp x29, x30, [sp], #16		// pop fp and sp from stack
 	ret
 
 _convert_temperature:
