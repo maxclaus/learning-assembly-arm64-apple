@@ -14,7 +14,10 @@
 - `register read --all`: Print all registers
 - `register read <register>`: Print the value for a register.
 - `p`: Print a variable or expression as decimal (`p $X0`).
-- `p/x`: Print a variable or expression as hexadecimal (`p/x $X0`).
+  - `p/<format>`: [output formats](https://sourceware.org/gdb/current/onlinedocs/gdb.html/Output-Formats.html).
+  - `p/x`: Print a variable or expression as hexadecimal (`p/x $X0`).
+  - `p/d`: Print a variable or expression as decimal (`p/d $X0`).
+  - `p/s`: Print a variable or expression as string (`p/s $X0`).
 - `x` (abbreviation for `memory read`): Read from the memory of the current target process. Example
   reading `input` label with "string" content with 4 bytes `x -s 4 -f c &input`.
 - `target create <program_executable>`: Relaunch program.

@@ -40,8 +40,9 @@ This project contains notes and small program examples on Assembly programming f
 - [Data definition directives](https://developer.arm.com/documentation/101754/0622/armclang-Reference/armclang-Integrated-Assembler/Data-definition-directives?lang=en)
 - [Writing ARM64 code for Apple platforms](https://developer.apple.com/documentation/xcode/writing-arm64-code-for-apple-platforms)
 - [Getting Started with Arm Assembly Language](https://developer.arm.com/documentation/107829/0200/)
-- [A64 -- Base Instructions (alphabetic order)](https://www.scs.stanford.edu/~zyedidia/arm64/index.html)
+- [A64 - Base Instructions (alphabetic order)](https://www.scs.stanford.edu/~zyedidia/arm64/index.html)
 - [A64 general instructions in alphabetical order](https://developer.arm.com/documentation/dui0802/b/A64-General-Instructions/A64-general-instructions-in-alphabetical-order)
+- [A64 floating-point instructions in alphabetical order](https://developer.arm.com/documentation/dui0802/b/A64-Floating-point-Instructions/A64-floating-point-instructions-in-alphabetical-order)
 - [Arm A-profile A64 Instruction Set Architecture](https://developer.arm.com/documentation/ddi0602/2022-09/Base-Instructions)
 - [Mac OS X ABI Mach-O File Format Reference](https://web.archive.org/web/20090901205800/http://developer.apple.com/mac/library/documentation/DeveloperTools/Conceptual/MachORuntime/Reference/reference.html), also available on [this Github repository](https://github.com/aidansteele/osx-abi-macho-file-format-referencea).
 - [ARMv8-A A64 ISA Overview](https://armkeil.blob.core.windows.net/developer/Files/pdf/graphics-and-multimedia/ARMv8_InstructionSetOverview.pdf)
@@ -53,6 +54,7 @@ This project contains notes and small program examples on Assembly programming f
 - [Exploring AArch64 assembler](https://thinkingeek.com/categories/aarch64/)
 - [Introduction to ARM AArch64 Architecture and Low-level Programming](https://hrishim.github.io/llvl_prog1_book/chapter_1.html)
 - [Migrating code from ARM to ARM64](https://blog.linuxplumbersconf.org/2014/ocw/system/presentations/2343/original/08%20-%20Migrating%20code%20from%20ARM%20to%20ARM64.pdf)
+- [Integer and floating-point conversions](https://learn.arm.com/learning-paths/cross-platform/integer-vs-floats/integer-float-conversions/)
 
 ### Projects/Examples
 
@@ -200,3 +202,5 @@ used on writing my own summary later.
 - [`XNU`](https://github.com/apple-oss-distributions/xnu): short for X is not Unix. Is the kernel used by Darwin based on the Mach kernel.
 - `Mach-O`: short for Mach object file format. It determines the order which code and data in a binary
   file are read into memory. Programs compiled for Darwin will have this format.
+
+Simplest explanation about page and pageoff directives https://stackoverflow.com/a/38730184/1050818

@@ -78,7 +78,7 @@ It uses RISC technology (Reduced Instruction Set Computer):
 - Special registers:
   - **Program counter** `PC`: contains address of the next instruction to be executed.
   - **Stack pointer** `SP`: points to dynamic memory available during program execution.
-  - **Frame pointer** `FP` (`=x29`): points to the stack bacse during a function call, to recover stack
+  - **Frame pointer** `FP` (`=x29`): points to the stack base during a function call, to recover stack
     from calling function.
   - **Link register** `LR` (`=30`): saves the return address at a function call.
   - **Zero register** `XZR`: always contains the value zero.
