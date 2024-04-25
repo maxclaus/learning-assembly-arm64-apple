@@ -49,7 +49,7 @@ _convert_temperature:
 	b _convert_temperature_failure
 
 _convert_temperature_success:
-	bl print_uint
+	bl print_int
 
 	// Load w7 to stack because we cannot pass the data itself
 	// directly to write syscall, it must receive the pointer to that

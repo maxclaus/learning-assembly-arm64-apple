@@ -44,7 +44,7 @@ _convert_temperature:
 	b _convert_temperature_failure
 
 _convert_temperature_success:
-	bl print_uint
+	bl print_int
 
 	// Load w7 to stack because we cannot pass the data itself
 	// directly to write syscall, it must receive the pointer to that
@@ -92,5 +92,5 @@ output_prompt: .ascii "Type in temperature to be converted between Fahrenheit an
 F or C at the end (68F to convert it to 20C): \n"
 output_prompt_len = . - output_prompt
 
-output_invalid_type: .ascii "Invalid temperature type. It must end either with F or C."
+output_invalid_type: .ascii "Invalid temperature type. It must end either with F or C.\n"
 output_invalid_type_len = . - output_invalid_type

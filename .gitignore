@@ -1,3 +1,5 @@
+.DS_Store
+
 *.o
 
 projects/true-false/true
@@ -21,3 +23,5 @@ projects/temperature-converter/temperature-converter
 projects/arm64-assembly/part1-toupper/hello64
 projects/arm64-assembly/part2-bitcount/bitcount
 projects/arm64-assembly/part4-decimal/decimal
+projects/temperature-converter-stdin/converter
+projects/temperature-converter-arg/converter
