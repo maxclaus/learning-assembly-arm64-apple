@@ -73,6 +73,7 @@ This project contains notes and small program examples on Assembly programming f
 - [GNU Assembler](https://sourceware.org/binutils/docs/as/index.html)
 - [GNU Assembler Directives](https://web.mit.edu/gnu/doc/html/as_7.html)
 - [A Guide to ARM64 / AArch64 Assembly on Linux with Shellcodes and Cryptography](https://modexp.wordpress.com/2018/10/30/arm64-assembly/)
+- [Introduction to ARM Assembly Basics](https://azeria-labs.com/writing-arm-assembly-part-1/)
 
 ### Books
 
@@ -93,16 +94,30 @@ Since those options don't work for Apple development. We must use the Clang asse
 
 ### Registers
 
-`x0-x30` / `w0-w30` are the general-purpose registers used by ARM for fast access most close to the CPU. The `w` prefix is used for 32 bit and `x` prefix for 64 bit.
-They are used basically as parameter and result arguments.
+### General purpose registers
 
-    The A64 ISA provides 31 general-purpose registers. For this guide, we will say that these registers are called x0 to x30, and they each contain 64 bits of data.
+| Register | Size             | Short Description       |
+| -------- | ---------------- | ----------------------- |
+| `w0-w30` | 32-bit (4-bytes) | For 32-bit decimal data |
+| `x0-x30` | 64-bit (8-bytes) | For 64-bit decimal data |
 
-    In fact, A64 assembly code lets you use these registers in two different ways. Each register can be used as a 64-bit x register (x0..x30), or as a 32-bit w register (w0..w30). These are two separate ways of looking at the same register. But for this guide, we just use the x0..x30 registers.
+There is also a separate set of 32 registers used for floating point and vector operations, and
+other sizes:
 
-    Reference: https://developer.arm.com/documentation/107829/0200/Assembly-language-basics/Registers
+| Register | Size               | Short Description                        |
+| -------- | ------------------ | ---------------------------------------- |
+| `b0-b30` | 8-bit (1-byte)     | For 8-bit decimal data                   |
+| `h0-h30` | 16-bit (2-bytes)   | For 16-bit decimal data                  |
+| `s0-s30` | 32-bit (4-bytes)   | For 32-bit single precision float number |
+| `d0-d30` | 64-bit (8-bytes)   | For 64-bit double precision float number |
+| `q0-q30` | 128-bit (16-bytes) | For 128-bit decimal data                 |
 
-Most common registers:
+More details:
+
+- [Getting Started with Arm Assembly Language](https://developer.arm.com/documentation/107829/0200/Assembly-language-basics/Registers).
+- [Registers in AArch64 - general-purpose registers](https://developer.arm.com/documentation/102374/0101/Registers-in-AArch64---general-purpose-registers).
+
+#### Registers purpose
 
 - `x0-x7`: These are general purpose registers used as input/output parameters for functions calls.
   If a function has more than 8 arguments, the rest of the arguments are passed through the stack.
@@ -141,29 +156,40 @@ Less used registers, but still important to mention:
 
 #### Instructions
 
-| Instruction | Description                                                 |
-| ----------- | ----------------------------------------------------------- |
-| `mov`       | Move a value to a register                                  |
-| `store`     | Store data into the stack memory                            |
-| `b`         | Branch the current execution into another label (function). |
+| Instruction | Description                                                             |
+| ----------- | ----------------------------------------------------------------------- |
+| `b`         | Branch the current execution into another label (function).             |
+| `bl`        | Branch link, branch and save the current position in the link register. |
+| `mov`       | Move a value to a register                                              |
+| `fmov`      | Move a float value to a float register                                  |
+| `stp`       | Store pare of resgiers data into the stack memory                       |
+| `strb`      | Store a byte into the stack memory                                      |
+| `ldr`       | Load data from memory to register                                       |
+
+##### Condition Execution
+
+Check out [conditional
+execution](https://developer.arm.com/documentation/ddi0406/c/Application-Level-Architecture/Instruction-Details/Conditional-execution) for extensions it support such as beq, bneq, and etc.
 
 ##### Arithmetic operations
 
-| Instruction | Signature                                      | Description                         |
-| ----------- | ---------------------------------------------- | ----------------------------------- |
-| `add`       | `add <destination>, <register1>, <register2>`  | Add the value from 2 registers      |
-| `sub`       | `sub <destination>, <register1>, <register2>`  | Subtract the value from 2 registers |
-| `mul`       | `mul <destination>, <register1>, <register2>`  | Multiply the value from 2 registers |
-| `udiv`      | `udiv <destination>, <register1>, <register2>` | Divides two unsigned values         |
+| Instruction | Description                         |
+| ----------- | ----------------------------------- |
+| `add`       | Add the value from 2 registers      |
+| `sub`       | Subtract the value from 2 registers |
+| `mul`       | Multiply the value from 2 registers |
+| `udiv`      | Divides two unsigned values         |
 
 #### Directives
 
-| Instruction                     | Description       | Absolute                               |
-| ------------------------------- | ----------------- | -------------------------------------- |
-| `.byte`                         | 8-bits (1 byte)   | Within the range [-128,255] only       |
-| `.hword` (half word)            | 16-bits (2 bytes) | Within the range [-0x8000,0xffff] only |
-| `.word`                         | 32-bits (4 bytes) | Within the range [-2^31,2^32-1] only   |
-| `.quad`, `.dowrd` (double word) | 64-bits (8 bytes) | Within the range [-2^63,2^64-1] only   |
+| Instruction                     | Description       | Absolute                                                                    |
+| ------------------------------- | ----------------- | --------------------------------------------------------------------------- |
+| `.byte`                         | 8-bits (1 byte)   | Within the range [-128,255] only                                            |
+| `.hword` (half word)            | 16-bits (2 bytes) | Within the range [-0x8000,0xffff] only                                      |
+| `.word`                         | 32-bits (4 bytes) | Within the range [-2^31,2^32-1] only                                        |
+| `.single`, `.float`             | 32-bits (4 bytes) | Fractional, within the range [+/- 1.17 x 10^-38 to +/- 3.4 x 10^38] only    |
+| `.double`                       | 64-bits (8 bytes) | Fractional, within the range [+/- 2.23 x 10^-308 to +/- 1.80 x 10^308] only |
+| `.quad`, `.dowrd` (double word) | 64-bits (8 bytes) | Within the range [-2^63,2^64-1] only                                        |
 
 References:
 
