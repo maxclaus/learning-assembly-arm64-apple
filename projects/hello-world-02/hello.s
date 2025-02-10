@@ -3,11 +3,9 @@
 // https://www.youtube.com/watch?v=d0OXp0zqIo0
 
 .global _main
-.align  2     // Apple silicon boundary is 2
-; .arch armv8-a
 
-; This ".text" is the actual section that holds instructions of the program.
-; It is optional though.
+// This ".text" is the actual section that holds instructions of the program.
+// It is optional though.
 .text
 _main:
 	bl _print
@@ -48,7 +46,7 @@ _terminate:
 // Example of how to reboot the system using a syscall.
 _reboot:
 	mov X0, #1   // pass 1 for the first argument
-	mov X16, #55 // syscall id for the reboo operation
+	mov X16, #55 // syscall id for the reboot operation
 	svc 0
 
 helloworld:

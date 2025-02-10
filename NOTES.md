@@ -90,16 +90,15 @@ It uses RISC technology (Reduced Instruction Set Computer):
 
 ```asm
 .global _main
-.align 4
 
 _main:
     mov X0, #1          ; arg[0] = 1 = STDOUT
-    adr X1, helloworld  ; arg[1] = string to pring
+    adr X1, helloworld  ; arg[1] = string to print
     mov X2, #16         ; arg[2] = length of our string
     mov X16, #4         ; Unix write system call
 
     mov X0, #0          ; Use 0 return code
-    mov X16, #2         ; Unix exit system call
+    mov X16, #1         ; Unix exit system call
     svc #0xFFFF         ; call kernel to end program
 
 helloworld: .ascii "Hello M1-World!\n"
@@ -377,3 +376,7 @@ Notes taken from [ARM Assembly: Lesson 11 (Stack Operations)](https://www.youtub
   The stack grows downward in memory. Subtract from the stack pointer to allocate space
   for new values.
 - `push` and `pop` commands update the stack pointer register automatically.
+
+https://www.cs.princeton.edu/courses/archive/spr19/cos217/lectures/13_Assembly1.pdf
+
+https://www.cs.emory.edu/~cheung/Courses/255/Syllabus/9-Intel/Resources/Book01-partial/

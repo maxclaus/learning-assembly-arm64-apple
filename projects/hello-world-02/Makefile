@@ -1,7 +1,7 @@
 # Make requires to have at least the System lib linked into the program.
 SYSLIBROOT = `xcrun -sdk macosx --show-sdk-path`
 
-all: hello
+all: hello_from_c hello_from_assembly
 
 clean:
 	rm *.o

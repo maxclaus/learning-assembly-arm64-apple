@@ -4,7 +4,8 @@
 
 projects/true-false/true
 projects/true-false/false
-projects/hello-world/hello
+projects/hello-world-01/hello
+projects/hello-world-02/hello
 projects/c-asm-integration/main
 projects/fibonacci/fibonacci
 projects/arm-assembly-lessons/lesson01
