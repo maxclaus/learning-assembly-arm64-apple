@@ -6,7 +6,7 @@ This [video][lldb_debugger_video] has a good introduction to [LLDB Debugger](htt
 
 This is how I started the debugger for an Assembly program:
 
-- Build object code files using as with -g argument which includes debugging information in the output object file.
+- Build object code files using as with `-g` argument which includes debugging information in the output object file.
 - Builds the executable file based on the previous object files (nothing different the usual in this part).
 - Start LLDB debugger for that program `lldb ./<program_executable>`
 - Add a breaking point `b <program_source_file>:<line_number>`.
