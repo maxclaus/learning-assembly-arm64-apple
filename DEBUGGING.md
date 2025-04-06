@@ -33,7 +33,10 @@ These are all the commands I used on debugging Assembly programs:
 - `p/x`: Print a variable or expression as hexadecimal (`p/x $X0`).
 - `p/d`: Print a variable or expression as decimal (`p/d $X0`).
 - `p/s`: Print a variable or expression as string (`p/s $X0`).
+- `p/t`: Print a variable or expression as binary (`p/t $X0`).
 - `x (abbreviation for memory read)`: Read from the memory of the current target process. Example reading input label with "string" content with 4 bytes x -s 4 -f c &input.
+- `x/2bt` print binary format of 2 bytes length. Bytes are printed in reverse order though
+  ([reference][ref_binary_print])
 - `target create <program_executable>`: Relaunch program.
 - `gui`: Graphical user interface.
 - `help`
@@ -41,3 +44,4 @@ These are all the commands I used on debugging Assembly programs:
 - `q, quit`: Quit program.
 
 [lldb_debugger_video]: https://www.youtube.com/watch?v=v_C1cvo1biI
+[ref_binary_print]: https://stackoverflow.com/a/50140053/1050818
